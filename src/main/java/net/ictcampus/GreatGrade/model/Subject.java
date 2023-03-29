@@ -27,7 +27,7 @@ public class Subject {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "test")
+    @OneToMany(mappedBy = "subject")
     @JsonBackReference
     private Set<Test> tests = new HashSet<>();
 
