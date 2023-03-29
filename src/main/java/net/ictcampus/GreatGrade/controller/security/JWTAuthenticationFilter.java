@@ -2,7 +2,7 @@ package net.ictcampus.GreatGrade.controller.security;
 
 import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ictcampus.GreatGrade.model.User;
+import net.ictcampus.GreatGrade.model.Users;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -26,8 +26,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest req,
                                                 HttpServletResponse res) throws AuthenticationException {
         try {
-            User creds = new ObjectMapper()
-                    .readValue(req.getInputStream(), User.class);
+            Users creds = new ObjectMapper()
+                    .readValue(req.getInputStream(), Users.class);
 
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(

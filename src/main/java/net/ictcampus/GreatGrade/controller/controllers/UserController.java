@@ -1,7 +1,7 @@
 package net.ictcampus.GreatGrade.controller.controllers;
 
 import net.ictcampus.GreatGrade.controller.services.UserService;
-import net.ictcampus.GreatGrade.model.User;
+import net.ictcampus.GreatGrade.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @GetMapping
-    public Iterable<User> findAll() {
+    public Iterable<Users> findAll() {
         try {
             return userService.findAll();
         } catch (EntityNotFoundException e) {
@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping(path = "{id}")
-    public User findById(@PathVariable(value = "id") Integer id) {
+    public Users findById(@PathVariable(value = "id") Integer id) {
         try {
             return userService.findById(id);
         } catch (EntityNotFoundException e) {
@@ -42,9 +42,9 @@ public class UserController {
 
     @PostMapping(value = "/sign-up", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public void signUp(@RequestBody @Valid User user) {
+    public void signUp(@RequestBody @Valid Users users) {
         try {
-            userService.signUp(user);
+            userService.signUp(users);
         } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Couldn't create User");
         }
@@ -52,9 +52,9 @@ public class UserController {
 
     @PutMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public void update(@RequestBody @Valid User user) {
+    public void update(@RequestBody @Valid Users users) {
         try {
-            userService.update(user);
+            userService.update(users);
         } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Couldn't update User");
         }

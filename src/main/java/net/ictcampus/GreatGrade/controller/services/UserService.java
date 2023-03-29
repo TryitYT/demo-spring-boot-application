@@ -2,7 +2,7 @@ package net.ictcampus.GreatGrade.controller.services;
 
 import net.ictcampus.GreatGrade.controller.configurations.ApplicationConfiguration;
 import net.ictcampus.GreatGrade.controller.repositories.UserRepository;
-import net.ictcampus.GreatGrade.model.User;
+import net.ictcampus.GreatGrade.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,23 +22,23 @@ public class UserService {
         this.bCryptPasswordEncoder = applicationConfiguration.bCryptPasswordEncoder();
     }
 
-    public Iterable<User> findAll() {
+    public Iterable<Users> findAll() {
         return userRepository.findAll();
     }
 
-    public User findById(Integer id) {
-        Optional<User> user = userRepository.findById(id);
+    public Users findById(Integer id) {
+        Optional<Users> user = userRepository.findById(id);
         return user.orElseThrow(EntityNotFoundException::new);
     }
 
-    public void signUp(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+    public void signUp(Users users) {
+        users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
+        userRepository.save(users);
     }
 
-    public void update(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+    public void update(Users users) {
+        users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
+        userRepository.save(users);
     }
 
     public void deleteById(Integer id) {

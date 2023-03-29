@@ -20,12 +20,11 @@ public class Subject {
     private String name;
 
     @NotNull(message = "Subject weight is required")
-    @NotBlank(message = "Subject weight can't be blank")
     private Integer weight;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Users users;
 
     @OneToMany(mappedBy = "subject")
     @JsonBackReference
@@ -55,11 +54,11 @@ public class Subject {
         this.weight = weight;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Users users) {
+        this.users = users;
     }
 }

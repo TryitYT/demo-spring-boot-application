@@ -24,7 +24,7 @@ public class TestController {
     @GetMapping
     public Iterable<Test> findByName(@RequestParam(value = "name", required = false) String name) {
         try {
-            if (!name.isEmpty()) {
+            if (name != null) {
                 return testService.findByName(name);
             } else {
                 return testService.findAll();

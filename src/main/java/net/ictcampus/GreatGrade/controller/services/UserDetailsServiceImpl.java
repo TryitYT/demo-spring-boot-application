@@ -1,7 +1,7 @@
 package net.ictcampus.GreatGrade.controller.services;
 
 import net.ictcampus.GreatGrade.controller.repositories.UserRepository;
-import net.ictcampus.GreatGrade.model.User;
+import net.ictcampus.GreatGrade.model.Users;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,10 +19,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
+        Users users = userRepository.findByUsername(username);
+        if (users == null) {
             throw new UsernameNotFoundException(username);
         }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), emptyList());
+        return new org.springframework.security.core.userdetails.User(users.getUsername(), users.getPassword(), emptyList());
     }
 }

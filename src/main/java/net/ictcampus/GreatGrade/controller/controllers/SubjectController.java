@@ -24,7 +24,7 @@ public class SubjectController {
     @GetMapping
     public Iterable<Subject> findByName(@RequestParam(value = "name", required = false) String name) {
         try {
-            if (!name.isEmpty()) {
+            if (name != null) {
                 return subjectService.findByName(name);
             } else {
                 return subjectService.findAll();
