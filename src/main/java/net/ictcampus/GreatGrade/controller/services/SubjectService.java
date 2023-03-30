@@ -18,12 +18,12 @@ public class SubjectService {
         this.subjectRepository = subjectRepository;
     }
 
-    public Iterable<Subject> findAll() {
-        return subjectRepository.findAll();
+    public Iterable<Subject> findByUserId(Integer userId) {
+        return subjectRepository.findByUserId(userId);
     }
 
-    public Iterable<Subject> findByName(String name) {
-        return subjectRepository.findByName(name);
+    public Iterable<Subject> findByNameAndUserId(String name, Integer userId) {
+        return subjectRepository.findByNameAndUserId(name, userId);
     }
 
     public Subject findById(Integer id) {

@@ -22,12 +22,12 @@ public class TestController {
     }
 
     @GetMapping
-    public Iterable<Test> findByName(@RequestParam(value = "name", required = false) String name) {
+    public Iterable<Test> findByName(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "subjectId", required = true) Integer subjectId) {
         try {
             if (name != null) {
-                return testService.findByName(name);
+                return testService.findByNameAndSubjectId(name, subjectId);
             } else {
-                return testService.findAll();
+                return testService.findBySubjectId(subjectId);
             }
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Test not found");

@@ -18,12 +18,12 @@ public class TestService {
         this.testRepository = testRepository;
     }
 
-    public Iterable<Test> findAll() {
-        return testRepository.findAll();
+    public Iterable<Test> findBySubjectId(Integer subjectId) {
+        return testRepository.findBySubjectId(subjectId);
     }
 
-    public Iterable<Test> findByName(String name) {
-        return testRepository.findByName(name);
+    public Iterable<Test> findByNameAndSubjectId(String name, Integer subjectId) {
+        return testRepository.findByNameAndSubjectId(name, subjectId);
     }
 
     public Test findById(Integer id) {

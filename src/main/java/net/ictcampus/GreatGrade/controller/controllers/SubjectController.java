@@ -22,12 +22,12 @@ public class SubjectController {
     }
 
     @GetMapping
-    public Iterable<Subject> findByName(@RequestParam(value = "name", required = false) String name) {
+    public Iterable<Subject> findByName(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "userId", required = true) Integer userId) {
         try {
             if (name != null) {
-                return subjectService.findByName(name);
+                return subjectService.findByNameAndUserId(name, userId);
             } else {
-                return subjectService.findAll();
+                return subjectService.findByUserId(userId);
             }
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Subject not found");

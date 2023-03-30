@@ -20,7 +20,7 @@ public class Subject {
     private String name;
 
     @NotNull(message = "Subject weight is required")
-    private Integer weight;
+    private Float weight;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -46,11 +46,11 @@ public class Subject {
         this.name = name;
     }
 
-    public Integer getWeight() {
+    public Float getWeight() {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    public void setWeight(Float weight) {
         this.weight = weight;
     }
 

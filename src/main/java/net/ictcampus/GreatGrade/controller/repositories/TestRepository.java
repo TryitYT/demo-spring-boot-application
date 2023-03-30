@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TestRepository extends CrudRepository<Test, Integer> {
-    @Query("SELECT t FROM Test t WHERE t.name LIKE CONCAT('%', :name, '%')")
-    Iterable<Test> findByName(@Param("name") String name);
+    @Query("SELECT t FROM Test t WHERE t.name LIKE CONCAT('%', :name, '%') AND t.subject.id_subject = :subjectId")
+    Iterable<Test> findByNameAndSubjectId(@Param("name") String name, @Param("subjectId") Integer subjectId);
+
+    @Query("SELECT t FROM Test t WHERE t.subject.id_subject = :subjectId")
+    Iterable<Test> findBySubjectId(@Param("subjectId") Integer subjectId);
 }

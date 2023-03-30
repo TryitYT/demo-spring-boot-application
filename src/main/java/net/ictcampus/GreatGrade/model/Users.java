@@ -19,6 +19,7 @@ public class Users {
 
     @NotNull(message = "Username is required")
     @NotBlank(message = "Username can't be blank")
+    @Column(unique = true)
     private String username;
 
     @NotNull(message = "Name is required")

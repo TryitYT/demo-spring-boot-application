@@ -16,12 +16,10 @@ public class Test {
     private String name;
 
     @NotNull(message = "Test grade is required")
-    @NotBlank(message = "Test grade can't be blank")
-    private Integer grade;
+    private Float grade;
 
     @NotNull(message = "Test weight is required")
-    @NotBlank(message = "Test weight can't be blank")
-    private Integer weight;
+    private Float weight;
 
     @ManyToOne
     @JoinColumn(name = "subject_id")
@@ -43,19 +41,19 @@ public class Test {
         this.name = name;
     }
 
-    public Integer getGrade() {
+    public Float getGrade() {
         return grade;
     }
 
-    public void setGrade(Integer grade) {
+    public void setGrade(Float grade) {
         this.grade = grade;
     }
 
-    public Integer getWeight() {
+    public Float getWeight() {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    public void setWeight(Float weight) {
         this.weight = weight;
     }
 
