@@ -3,6 +3,7 @@ package net.ictcampus.GreatGrade.controller.controllers;
 import net.ictcampus.GreatGrade.controller.services.UserService;
 import net.ictcampus.GreatGrade.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,8 +23,11 @@ public class UserController {
     }
 
     @GetMapping
-    public Iterable<Users> findAll() {
+    public Iterable<Users> findAll(@RequestParam(value = "username", required = false) String username) {
         try {
+            if (username != null) {
+                return userService.findByUsernameS(username);
+            }
             return userService.findAll();
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Users not found");

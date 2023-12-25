@@ -31,6 +31,10 @@ public class UserService {
         return user.orElseThrow(EntityNotFoundException::new);
     }
 
+    public Iterable<Users> findByUsernameS(String username) {
+        return userRepository.findByUsernameS(username);
+    }
+
     public void signUp(Users users) {
         users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
         userRepository.save(users);

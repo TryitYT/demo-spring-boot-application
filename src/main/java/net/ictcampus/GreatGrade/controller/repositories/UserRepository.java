@@ -11,4 +11,7 @@ public interface UserRepository extends CrudRepository<Users, Integer> {
 
     @Query("SELECT u FROM Users u WHERE u.username = :username")
     Users findByUsername(@Param("username") String username);
+
+    @Query("SELECT u FROM Users u WHERE u.username LIKE :username")
+    Iterable<Users> findByUsernameS(@Param("username") String username);
 }
